@@ -1,0 +1,27 @@
+<!-- ngForm 代表整个表单，angular会自动添加 隐式创建FormGroup类 -->
+<!-- #myForm 模版本地变量 -->
+<!-- 标记html元素是表单的一部分 -->
+<!-- myForm.valid 传递表单是否验证通过 -->
+<form #myForm="ngForm" (ngSubmit)="onSubmit(myForm.value,myForm.valid)" novalidate><!-- novalidate不要html默认表单检验，固定写法 -->
+  <!-- ngModel 自动被识别 -->
+  <div>username: <input ngModel required minlength="6" type="text" name="username"></div>
+      <div style="color:red" [hidden]="!myForm.form.hasError('required','username')">
+          用户名是必填项
+        </div>
+        <div style="color:red" [hidden]="!myForm.form.hasError('minlength','username')">
+          用户名最小长度是{{minLength}}
+        </div>
+  <div>phone: <input ngModel mobile type="number" name="mobile"></div>
+  <div style="color:red" [hidden]="!myForm.form.hasError('mobile','mobile')">
+      请输入正确的手机号
+    </div>
+  <!-- ngModelGroup 单独处理一些内容 -->
+  <div ngModelGroup="passwordGroup">
+      <div>password: <input ngModel type="password" name="password"></div>
+      <div>confirmPsw: <input ngModel type="password" name="confirmPsw"></div>
+  </div>
+  <button type="submit">注册</button>
+</form>
+<!-- 创建指令  
+        ng g directive directive/formVolidator/mobileVolidator
+-->

@@ -1,0 +1,25 @@
+<section>
+  <div class="w">
+    <header>
+      <a routerLink="">神奇动物</a> 
+      <span class="split">></span>
+      <span>{{ currentSelectMenu }}</span>
+    </header>
+    <div class="main-content clearfix">
+      <div class="menu pull-left">
+        <ul>
+          <li *ngFor="let item of menu">
+            <a 
+              [routerLink]="item.url" 
+              (click)="menuClick(item.name)"
+              [ngStyle]="{'color':item.isActive  ? 'red' : '' }"
+              [ngClass]="{'active':item.isActive}">{{item.name}}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="content pull-left">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</section>

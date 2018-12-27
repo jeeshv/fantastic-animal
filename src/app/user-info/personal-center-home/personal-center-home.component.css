@@ -1,0 +1,30 @@
+.split{
+    margin-left:5px;
+    margin-right: 5px;
+}
+section{
+    border-top: 2px solid #c60023;
+}
+header{
+    margin-top: 20px;
+}
+a{
+    text-decoration:none;
+}
+a:hover{
+    color:#c60023;
+}
+.main-content{
+    margin-top:30px;
+}
+.menu{
+    
+    padding-left:20px;
+    padding-right: 20px;
+}
+.content{
+    width:90%;
+}
+.active{
+    font-weight: bold;
+}

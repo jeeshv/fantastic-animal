@@ -1,0 +1,57 @@
+<div class="login">
+  <form [formGroup]="myGroup" (ngSubmit)="onSubmit(myGroup, $event)">
+    <mat-card class="card">
+      
+      <mat-card-header>
+        <mat-card-title>用户登录</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="error-item" *ngIf="isError">
+          <i class="fa fa-minus-circle error-icon"></i>
+          <span class="err-msg">{{errorMsg}}</span>
+        </div>
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            type="text"
+            placeholder="您的账号"
+            formControlName="account"
+            autocomplete="off"
+          />
+          <mat-error>
+            <i class="fa fa-minus-circle"></i>
+            <span>没有输入账号</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            type="password"
+            placeholder="您的密码"
+            formControlName="password"
+            autocomplete="off"
+          />
+          <mat-error>
+            <i class="fa fa-minus-circle"></i>
+            <span>
+              没有输入密码
+            </span>
+          </mat-error>
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="accent"
+          type="submit"
+          [disabled]="!myGroup.valid"
+          style="width:100%"
+        >
+          登录
+        </button>
+      </mat-card-content>
+      <mat-card-actions class="text-right">
+        <p>还没有账户？ <a routerLink="/register">注册</a></p>
+        <p>忘记 <a routerLink="/forgot">密码？</a></p>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

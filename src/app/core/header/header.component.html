@@ -1,0 +1,54 @@
+<nav class="w top">
+  <p class="notice">
+    注意：本网站仅用于电商平台开发学习的演示！所有商品均为虚拟商品，且不会有真实交易产生！
+  </p>
+</nav>
+<header class="clearfix container clear-margin" *ngIf="!isMsgHeaderStyle">
+  <nav class="w">
+    <div class="pull-left">
+      <ul *ngIf="!currentUserName">
+        <li><a routerLink="login">登录</a></li>
+        <li><a (click)="regist()">注册</a></li>
+      </ul>
+      <ul *ngIf="currentUserName">
+        欢迎 
+        <span>{{currentUserName}} !</span>
+      </ul>
+    </div>
+
+    <div class="pull-right">
+      <ul>
+        <li>
+          <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+          <a>购物车 <span class="carNum">{{ carSaveNum }}</span></a>
+        </li>
+        <li><a>我的订单</a></li>
+        <li><a routerLink="personalCenter">个人中心</a></li>
+        <li><a routerLink="about">关于神奇动物</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="common w clearfix" *ngIf="isHome">
+    <div class="row clear-margin">
+        <div class="logo col-lg-3 col-md-3 col-xs-3">
+            <img class="logoImg" [src]="logoImg" alt="">
+        </div>
+        <div class="search col-lg-9 col-md-9 col-xs-9">
+          <input type="text" value="{{searchContent}}" [(ngModel)]="searchContent" placeholder="请输入商品名称">
+          <span class="btn-search" (click)="search()">搜索</span>
+        </div>
+    </div>
+  </div>
+</header>
+
+<header *ngIf="isMsgHeaderStyle" class="msg-header">
+  <nav class="w">
+    <div class="container clear-margin">
+      <div class="row clear-margin">
+          <div class="logo col-lg-3 col-md-3 col-xs-3">
+              <img class="logoImg subLogo" [src]="logoImg" alt="" (click)="clickLogo()">
+          </div>
+      </div>
+    </div>
+  </nav>
+</header>

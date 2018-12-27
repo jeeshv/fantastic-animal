@@ -1,0 +1,41 @@
+<div class="regist">
+    <form [formGroup]="myFormGroupxx" (ngSubmit)="onSubmit(myFormGroupxx,$event)">
+        <mat-card class="card">
+          <mat-card-header>
+            <mat-card-title>用户注册</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-form-field class="full-width">
+              <input matInput type="text" placeholder="请输入用户名" formControlName="username" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput type="password" placeholder="请输入的密码" formControlName="password" autocomplete="off">
+              <mat-error>密码不正确哦</mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput type="password" placeholder="重复输入您的密码" formControlName="pconfirm" autocomplete="off">
+              <mat-error>密码不正确哦</mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput type="password" placeholder="重请输入手机号" formControlName="phoneNum" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput type="password" placeholder="邮箱" formControlName="email" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput type="password" placeholder="请输入密码提示问题" formControlName="question" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput type="password" placeholder="请输入密码提示问题答案" formControlName="answer" autocomplete="off">
+            </mat-form-field>
+            <!-- v1 -->
+            <!-- <mat-grid-list cols="6">
+              <mat-grid-tile *ngFor="let item of items">
+                <mat-icon [svgIcon]="item"></mat-icon>
+              </mat-grid-tile>
+            </mat-grid-list> -->
+            <button mat-raised-button color="accent" type="submit">注册</button>
+          </mat-card-content>
+        </mat-card>
+      </form>
+</div>

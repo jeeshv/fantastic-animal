@@ -1,0 +1,74 @@
+header{
+    width: 100%;
+    background: white;
+  }
+  header>nav {
+    height: 30px;
+    line-height: 30px;
+    color: #6C6C6C;
+  }
+  
+  ul li{
+    display: inline-block;
+  }
+  
+  ul li a {
+    display: inline-block;/* a元素是内联元素，不设置block就没有高度 */
+    padding: 0 0.5rem;
+    color: #6C6C6C;
+  }
+  .top{
+    height: 30px;
+    line-height: 30px;
+    width: 100%;
+    background: #c60023;
+    font-weight: bold;
+    color: white;
+  }
+  .notice{
+    text-align: center;
+  }
+  
+  .fa-shopping-cart{
+    color: #f40;
+  }
+  .carNum{
+    color: #f40;
+  }
+  
+  /* ======
+    搜索
+  ====== */
+  .common{
+    margin-top: 30px;
+    margin-bottom: 40px;
+  }
+  .logo .logoImg{
+    margin-left: 30%;
+  }
+  .subLogo{
+    cursor: pointer;
+  }
+  .common .search>input{
+    margin-left: 5%;
+    width: 50%;
+    padding: 10px;
+    border: 2px solid #c60023;
+    font-size: 15px;
+    outline: none;
+  }
+  .common .search .btn-search{
+    margin: -3px 0 0 0;
+    height: 46px!important;
+  }
+  .search{
+    margin-top: 5px;
+    height: 46px!important;
+  }
+  .search input{
+      height: 46px;
+  }
+  .msg-header{
+    height: 60px;
+  }
+  

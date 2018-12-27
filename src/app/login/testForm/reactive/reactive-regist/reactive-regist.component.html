@@ -1,0 +1,34 @@
+<form [formGroup]="myFormGroup" (submit)="onSubmit()">
+  <div>用户名：<input type="text" formControlName="username"></div>
+  <div [hidden]="myFormGroup.get('username').valid || myFormGroup.get('username').untouched">
+      <div style="color:red" [hidden]="!myFormGroup.hasError('required','username')">
+          用户名是必填项
+        </div>
+        <div style="color:red" [hidden]="!myFormGroup.hasError('minlength','username')">
+          用户名最小长度是{{minLength}}
+        </div>
+  </div>
+  <!-- required不是校验器的名字，而是失败后返回的对象里的key值 
+  * 只要是required有值就认为是错误的，不论是什么值true或者是对象
+  * username是想要检查的字段名字
+  -->
+  <div>手机号：<input type="text" formControlName="mobile"></div>
+  <div style="color:red" [hidden]="!myFormGroup.hasError('mobile','mobile')">
+    请输入正确的手机号
+  </div>
+  <div formGroupName="passwordsGroup">
+    <div>密码：<input type="password" formControlName="password"></div>
+    <div style="color:red" [hidden]="!myFormGroup.hasError('minlength',['passwordsGroup','password'])">
+        密码最小长度是{{minLength}}
+    </div>
+    <div>确认密码：<input type="password" formControlName="pconfirm"></div>
+    <div style="color:red" [hidden]="!myFormGroup.hasError('equal','passwordsGroup')">
+        <!-- 两次输入的密码不匹配 -->
+        {{myFormGroup.getError('equal','passwordsGroup')?.descxxx}}
+    </div>
+  </div>
+  <button type="submit">注册</button>
+</form>
+<div>
+  {{myFormGroup.status}}<!-- 异步验证的状态：PENDING=检验中 -->
+</div>

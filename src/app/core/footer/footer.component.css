@@ -1,0 +1,25 @@
+footer{
+    height: 80px;
+    width: 100%;
+    background-color: white;
+    color: #6C6C6C;
+    padding-top: 20px;
+}
+.links{
+    margin: 0 auto;
+    height: 30px;
+    line-height: 30px
+}
+
+ul li{
+    display: inline-block;
+}
+ul li a {
+    display: inline-block;/* a元素是内联元素，不设置block就没有高度 */
+    padding: 0 1rem;
+    color: #6C6C6C;
+  }
+
+  .about{
+      height: 30px;
+  }
