@@ -11,8 +11,13 @@
         <li><a (click)="regist()">注册</a></li>
       </ul>
       <ul *ngIf="currentUserName">
-        欢迎 
-        <span>{{currentUserName}} !</span>
+        <li>
+          <span>欢迎 </span> 
+          <span>{{currentUserName}} !</span>
+        </li>
+        <li>
+          <a (click)="logout()">退出</a>
+        </li>
       </ul>
     </div>
 

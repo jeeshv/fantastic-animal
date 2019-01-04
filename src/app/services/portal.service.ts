@@ -1,53 +1,38 @@
 import {Injectable }from '@angular/core'; 
-import {Http}from "@angular/http"; 
-// 使用rxjs
-import {Observable }from 'rxjs'
-// import 'rxjs/RX'
-import {map }from 'rxjs/operators'; 
-import {HttpHeaders }from '@angular/common/http'; 
+import {map, catchError }from 'rxjs/operators'; 
+import {HttpHeaders,HttpClient, HttpParams }from '@angular/common/http'; 
 import { ApilService } from '../shared/service/http/api.service';
+import { Http } from '@angular/http';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class PortalService {
+    [x: string]: any;
     private _baseUrl = 'http://localhost:8080/'
 
-    constructor(private http:Http,private api:ApilService) {
+    constructor(private http:HttpClient,private api:ApilService) {
     }
 
-    userLogin(params):any {
-        return this.api.get("user/login.do", {
-            search:params, 
-            header:new HttpHeaders( {
-                'Content-Type':'application/json;charset=UTF-8', 
-                'Access-Control-Allow-Headers':'content-Type,Authorization'
-            })
-          });
+    userLogin(username,password):any {
+        const observe = 'response';
+        return this.http.get(`${this._baseUrl}/user/login.do?username=${username}&password=${password}`,{
+            observe
+        });
+    }
+    logout(): Observable<any>{
+        return this.http.get<any>(this._baseUrl +"user/logout.do");
     }
     regist(params):any {
-        return this.api.post("user/register.do", params,
-            {
-                header:new HttpHeaders( {
-                    'Content-Type':'application/json;charset=UTF-8', 
-                    'Access-Control-Allow-Headers':'content-Type,Authorization'
-                })
-            }
-        );
+        let httpOptions =  {
+            headers: new  HttpHeaders({ 
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            })
+        };
+        return this.api.post("user/register.do", params,httpOptions);
+    }
+    
+    getUserInfo():any{
+        return this.api.get("user/get_user_info.do");
     }
 
-    managerLogin(params): Observable<any> {
-        const httpOptions = {
-            headers: new HttpHeaders({
-              'Content-Type':  'application/json',
-              'Authorization': 'my-auth-token'
-            })
-          };
-        return this.api.post('manage/user/login.do',params,
-            {
-                header:new HttpHeaders( {
-                    'Content-Type':'application/json;charset=UTF-8', 
-                    'Access-Control-Allow-Headers':'content-Type,Authorization'
-                })
-            }
-        );
-    }
 }

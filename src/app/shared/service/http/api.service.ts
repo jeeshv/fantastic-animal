@@ -4,6 +4,7 @@ import { Http, Jsonp } from "@angular/http";
 import { Observable } from 'rxjs'
 // import 'rxjs/RX'
 import { map } from 'rxjs/operators';
+import { HttpHeaders, HttpClient } from "@angular/common/http";
 
 
 @Injectable()
@@ -11,7 +12,7 @@ export class ApilService {
     private _baseUrl = 'http://localhost:8080/'
     // 注入依赖服务
     // 构造函数内部声明，私有化，实例化
-    constructor(private http: Http) {}
+    constructor(private http:HttpClient) {}
 
 
     get baseUrl(): string {
@@ -21,14 +22,13 @@ export class ApilService {
         this._baseUrl = newBaseUrl;
     }
 
-    get(path: string, conf: any = {}, baseUrl?: string):Observable < any > {
+    get(path: string, options: any = {}, baseUrl?: string):Observable < any > {
         path = (baseUrl || this.baseUrl) + path;
-        return this.http.get(path,conf);
+        return this.http.get(path);
     }
 
-
-    post(path: string, data: any, conf: any = {}, baseUrl?: string): any {
+    post(path: string, data?: any, options: any = {}, baseUrl?: string):Observable < any > {
         path = (baseUrl || this.baseUrl) + path;
-        return this.http.post(path, data, conf);
+        return this.http.post(path, data, options);
     }
 }

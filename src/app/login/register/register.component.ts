@@ -42,12 +42,13 @@ export class RegisterComponent implements OnInit {
       }
       console.log(obj);
       this.portalService.regist(obj).subscribe(result => {
-        const data = result.json();
+        console.log(result);
+        /* const data = result.json();
         if(data.status === 0){
           this.router.navigate(["/result",'regist']);
         }else{
           console.log("error");
-        }
+        } */
       });
     }
   }

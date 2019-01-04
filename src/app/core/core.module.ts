@@ -37,7 +37,12 @@ import { ApilService } from '../shared/service/http/api.service';
     FooterComponent,
   ],
   providers: [
-    {provide: 'BASE_CONFIG', useValue: {uri: 'http://localhost:3000',mmall:'http://192.168.9.101:8080'}},
+    {provide: 'BASE_CONFIG', 
+      useValue: {
+        uri: 'http://localhost:3000',
+        mmall:'http://192.168.9.101:8080'
+      }
+    },
     ApilService
   ]
 

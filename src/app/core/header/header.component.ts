@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { CookieService } from 'angular2-cookie/core';
+import { PortalService } from '../../services/portal.service';
+import { AppSettings } from '../../app-setting';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -10,25 +12,27 @@ import { CookieService } from 'angular2-cookie/core';
 export class HeaderComponent implements OnInit {
   @Output() toggle = new EventEmitter<void>();
   @Output() toggleDarkTheme = new EventEmitter<boolean>();
-
+  // 核心页面
   corePageRoute = [
     'home',
     'personalCenter',
     'about',
   ];
+  // 其它消息页面
   elsePageRoute = [
     'result',
     'login',
     'regist',
   ];
-  logoImg = "assets/img/logo.PNG";
-  searchContent = '';
-  isHome = false;
-  isLogin = false;
-  currentUserName='';
-  isMsgHeaderStyle = false;
+  logoImg = "assets/img/logo.PNG"; // logo图片地址
+  searchContent = ''; // 搜索内容
+  isHome = false;     // 当前是否主页
+  isLogin = false;    // 是否经过登录页面
+  currentUserName=''; // 当前登录用户名
+  isMsgHeaderStyle = false; // 导航头部是否切换为消息形式的头部
 
   constructor(
+    private portalService:PortalService,
     private cookieService: CookieService,
     private router: Router, 
     private titleService: Title, 
@@ -40,6 +44,7 @@ export class HeaderComponent implements OnInit {
     //TODO
     this.titleService.setTitle('神奇动物在哪里');
     this.listenRouter(); // 监听路由
+    this.checkSessionLive();// 检查用户登录状态
   }
   listenRouter(){
     this.router.events.subscribe((event) => {
@@ -88,12 +93,6 @@ export class HeaderComponent implements OnInit {
     }
     return flag;
   }
-  openSidebar() {
-    this.toggle.emit();// 发射事件
-  }
-  onChange(checked:boolean){
-    this.toggleDarkTheme.emit(checked);// 发射事件
-  }
 
   search(){
     alert(this.searchContent);
@@ -110,4 +109,30 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(["/home"]);
   }
 
+   /**
+   * 退出登录
+   */
+  logout(){
+    this.portalService.logout().subscribe(data => {
+      if(data.status === 0){
+        this.cookieService.removeAll();
+        AppSettings.TOKEN = '';
+        this.router.navigate(["/login"]);
+      }
+    });
+  }
+  /**
+   * 检查用户session是否失效
+   */
+  checkSessionLive(){
+    const username = this.cookieService.get("username");
+      if(username){
+        this.currentUserName = username;
+        AppSettings.TOKEN = this.cookieService.get("token");
+      }else{
+        this.cookieService.removeAll();
+        this.currentUserName = '';
+        AppSettings.TOKEN = '';
+      }
+  }
 }

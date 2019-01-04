@@ -7,8 +7,7 @@ import { HomeModule } from './home/home.module';
 import { UserInfoModule } from './user-info/userInfo.module';
 import { CookieBackendService } from 'angular2-cookie/services/cookies.backend.service';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
-
-
+import { HttpInterceptorService } from './services/Interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +19,11 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
     HomeModule,
     UserInfoModule,
   ],
-  providers: [CookieService,CookieBackendService],
+  providers: [
+    CookieService,
+    CookieBackendService,
+    HttpInterceptorService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

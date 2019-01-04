@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'angular2-cookie';
+import { User } from '../../domain/user.model';
 
 @Component({
   selector: 'app-user-info',
@@ -6,10 +8,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-info.component.css']
 })
 export class UserInfoComponent implements OnInit {
+  userInfo:User;
+  constructor(
+    private cookieService: CookieService,) {
 
-  constructor() { }
+   }
 
   ngOnInit() {
+    this.getCookieInfo();
+  }
+
+  getCookieInfo(){
+    const obj = {
+      username:this.cookieService.get("username"),
+      password:'',
+      phone:this.cookieService.get("phone"),
+      email:this.cookieService.get("email"),
+      question:this.cookieService.get("question"),
+      answer:this.cookieService.get("answer"),
+    };
+    this.userInfo = obj;
   }
 
 }

@@ -4,6 +4,7 @@ import { PersonalCenterHomeComponent } from './personal-center-home/personal-cen
 import { MyOrderComponent } from './my-order/my-order.component';
 import { ModifyPasswordComponent } from './modify-password/modify-password.component';
 import { UserInfoComponent } from './user-info/user-info.component';
+import { LoginGuard } from '../guard/login.guard';
 
 const routes: Routes = [
     { path: 'personalCenter', component: PersonalCenterHomeComponent,
@@ -11,12 +12,13 @@ const routes: Routes = [
             {path:'userInfo',component:UserInfoComponent},
             {path:'myOrder',component:MyOrderComponent},
             {path:'modifyPassword',component:ModifyPasswordComponent},
-        ] 
+        ],canActivate:[LoginGuard] 
     },
 ];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers:[LoginGuard]
 })
 export class UserInfoRoutingModule {}
