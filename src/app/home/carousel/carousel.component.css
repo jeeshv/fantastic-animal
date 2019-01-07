@@ -1,0 +1,10 @@
+.load{
+    display:flex;
+}
+.loading{
+    margin-top: 16%;
+}
+.carousel{
+    margin-left: 0.5px;
+    width: 960px;
+}

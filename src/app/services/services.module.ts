@@ -1,5 +1,6 @@
 import {NgModule, ModuleWithProviders} from '@angular/core';
 import { PortalService } from './portal.service';
+import { CategoryService } from './category.service';
 
 export {
   PortalService,
@@ -11,7 +12,8 @@ export class ServicesModule {
     return {
       ngModule: ServicesModule,
       providers: [
-        PortalService
+        PortalService,
+        CategoryService
       ]
     };
   }

@@ -1,0 +1,16 @@
+<div class="loading" *ngIf="!productList"></div>
+<div class="floor-wrap" *ngFor="let item of productList">
+    <h1 class="floor-title">{{item.name}}</h1>
+    <div class="contianer  clear-margin floor-con">
+      <div class="row  clear-margin">
+          <div class="col-lg-2 col-md-2 col-xs-2  clear-margin floor-item" *ngFor="let obj of item.dList">
+              <div class="item">
+                  <div><span class="floor-text">{{obj.name}}</span></div>
+                  <div class="img-content">
+                      <img class="floor-img" [src]="obj.picture" alt="冰箱">
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+</div>

@@ -16,3 +16,9 @@ https://www.cnblogs.com/leejay6567/p/9462758.html
 
 ##响应式表单详细教程
 https://segmentfault.com/a/1190000011902265#articleHeader5
+
+##轮播图组件
+http://www.bootcss.com/p/unslider/
+
+##在线图片生成
+http://placehold.it/800x300

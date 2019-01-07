@@ -2,17 +2,14 @@
     <div class="container clear-margin">
         <div class="row clear-margin">
             <div class="col-lg-3 col-md-3 col-xs-3 clear-margin">
-                <div class="cate-wrap">
-                    <ul class="cate-list">
-                        <li *ngFor="let item of menu" class="cate-item">
-                            <a *ngFor="let obj of item">{{obj.name}}</a>
-                        </li>
-                    </ul>
-                </div>
+                <app-product-menu></app-product-menu> 
             </div>
             <div class="col-lg-9 col-md-9  col-xs-9 clear-margin">
-                右边
+                <app-carousel></app-carousel>
             </div>
+        </div>
+        <div class="row clear-margin">
+            <app-product-list></app-product-list>
         </div>
     </div>
 </div>
