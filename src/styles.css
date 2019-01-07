@@ -85,7 +85,7 @@ a{
     定宽布局
 ========== */
 .w {
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
   min-width: 768px;
 }

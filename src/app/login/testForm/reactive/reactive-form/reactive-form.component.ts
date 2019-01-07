@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive-form',
@@ -13,7 +13,12 @@ import { FormGroup, FormControl, FormArray } from '@angular/forms';
  * formControl只能单独使用
  */
 export class ReactiveFormComponent implements OnInit {
+  username = '';
   formModel:FormGroup = new FormGroup({
+    'username': new FormControl(this.username, [
+      Validators.required,
+      Validators.minLength(4),
+    ]),
     dataRanger:new FormGroup({
       from:new FormControl(),
       to:new FormControl(),
@@ -25,7 +30,7 @@ export class ReactiveFormComponent implements OnInit {
     )
   });
   constructor() { }
-
+  get name() { return this.username; }
   ngOnInit() {
   }
   onSubmit(){

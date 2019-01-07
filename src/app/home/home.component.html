@@ -1,3 +1,18 @@
 <div class="w">
-    <h1>主页</h1>
+    <div class="container clear-margin">
+        <div class="row clear-margin">
+            <div class="col-lg-3 col-md-3 col-xs-3 clear-margin">
+                <div class="cate-wrap">
+                    <ul class="cate-list">
+                        <li *ngFor="let item of menu" class="cate-item">
+                            <a *ngFor="let obj of item">{{obj.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9  col-xs-9 clear-margin">
+                右边
+            </div>
+        </div>
+    </div>
 </div>

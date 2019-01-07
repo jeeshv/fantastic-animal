@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class PortalService {
-    [x: string]: any;
     private _baseUrl = 'http://localhost:8080/'
 
     constructor(private http:HttpClient,private api:ApilService) {
@@ -33,6 +32,23 @@ export class PortalService {
     
     getUserInfo():any{
         return this.api.get("user/get_user_info.do");
+    }
+
+    updateInfo(params):any{
+        let httpOptions =  {
+            headers: new  HttpHeaders({ 
+                'Content-Type': 'application/json;charset=UTF-8'
+            })
+        };
+        return this.api.post("user/update_information.do", params, httpOptions);
+    }
+    resetPassword(params):any{
+        let httpOptions =  {
+            headers: new  HttpHeaders({ 
+                'Content-Type': 'application/json;charset=UTF-8'
+            })
+        };
+        return this.api.post("user/reset_password.do", params, httpOptions);
     }
 
 }

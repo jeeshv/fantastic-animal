@@ -3,27 +3,30 @@
     我的信息
   </div>
   <div class="info">
-    <ul>
-      <li>
-        <span>用户名：</span>
-        <span>{{userInfo.username}}</span>
-      </li>
-      <li>
-        <span>电话：</span>
-        <span>{{userInfo.phone}}</span>
-      </li>
-      <li>
-        <span>邮箱：</span>
-        <span>{{userInfo.email}}</span>
-      </li>
-      <li>
-        <span>问题：</span>
-        <span>{{userInfo.question}}</span>
-      </li>
-      <li>
-        <span>答案：</span>
-        <span>{{userInfo.answer}}</span>
-      </li>
-    </ul>
+    <form  [formGroup]="updateUserInfo" (ngSubmit)="onSubmit(updateUserInfo,$event)">
+      <ul>
+        <li>
+          <span>用户名：</span>
+          <span>{{userInfo.username}}</span>
+        </li>
+        <li>
+          <span>电　话：</span>
+          <input type="text" [(ngModel)]="userInfo.phone" formControlName="phone">
+        </li>
+        <li>
+          <span>邮　箱：</span>
+          <input type="text" [(ngModel)]="userInfo.email" formControlName="email">
+        </li>
+        <li>
+          <span>问　题：</span>
+          <input type="text" [(ngModel)]="userInfo.question" formControlName="question">
+        </li>
+        <li>
+          <span>答　案：</span>
+          <input type="text" [(ngModel)]="userInfo.answer" formControlName="answer">
+        </li>
+      </ul>
+      <button mat-raised-button color="accent" type="submit"  [disabled]="!updateUserInfo.valid" style="margin-top:10px;">更新</button>
+    </form>
   </div>
 </div>

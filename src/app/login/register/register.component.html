@@ -5,36 +5,73 @@
             <mat-card-title>用户注册</mat-card-title>
           </mat-card-header>
           <mat-card-content>
-            <mat-form-field class="full-width">
-              <input matInput type="text" placeholder="请输入用户名" formControlName="username" autocomplete="off">
-            </mat-form-field>
-            <mat-form-field class="full-width">
-              <input matInput type="password" placeholder="请输入的密码" formControlName="password" autocomplete="off">
-              <mat-error>密码不正确哦</mat-error>
-            </mat-form-field>
-            <mat-form-field class="full-width">
-              <input matInput type="password" placeholder="重复输入您的密码" formControlName="pconfirm" autocomplete="off">
-              <mat-error>密码不正确哦</mat-error>
-            </mat-form-field>
-            <mat-form-field class="full-width">
-              <input matInput type="password" placeholder="重请输入手机号" formControlName="phoneNum" autocomplete="off">
-            </mat-form-field>
-            <mat-form-field class="full-width">
-              <input matInput type="password" placeholder="邮箱" formControlName="email" autocomplete="off">
-            </mat-form-field>
-            <mat-form-field class="full-width">
-              <input matInput type="password" placeholder="请输入密码提示问题" formControlName="question" autocomplete="off">
-            </mat-form-field>
-            <mat-form-field class="full-width">
-              <input matInput type="password" placeholder="请输入密码提示问题答案" formControlName="answer" autocomplete="off">
-            </mat-form-field>
-            <!-- v1 -->
-            <!-- <mat-grid-list cols="6">
-              <mat-grid-tile *ngFor="let item of items">
-                <mat-icon [svgIcon]="item"></mat-icon>
-              </mat-grid-tile>
-            </mat-grid-list> -->
-            <button mat-raised-button color="accent" type="submit">注册</button>
+            <div class="full-width">
+              <input type="text" placeholder="请输入用户名" formControlName="username" autocomplete="off">
+              <div [style.color]="'red'" [hidden]="myFormGroupxx.get('username').valid || myFormGroupxx.get('username').untouched">
+                <div  [hidden]="!myFormGroupxx.hasError('required','username')">
+                  用户名是必填项
+                </div>
+                <div [hidden]="!myFormGroupxx.hasError('minlength','username')">
+                  用户名最小长度是{{minLength}}
+                </div>
+              </div>
+            </div>
+            <div formGroupName="passwordsGroup">
+              <div class="full-width">
+                <input type="password" placeholder="请输入密码" formControlName="password" autocomplete="off">
+                <div [style.color]="'red'" [hidden]="!myFormGroupxx.hasError('minlength',['passwordsGroup','password'])">
+                    密码最小长度是{{minLength}}
+                </div>
+              </div>
+              <div class="full-width">
+                <input type="password" placeholder="重复输入您的密码" formControlName="pconfirm" autocomplete="off">
+                <div style="color:red"  [hidden]="!myFormGroupxx.hasError('equal','passwordsGroup')">
+                    {{myFormGroupxx.getError('equal','passwordsGroup')?.descxxx}}
+                </div>
+              </div>
+            </div>
+            <div class="full-width">
+              <input type="text" placeholder="重请输入手机号" formControlName="phoneNum" autocomplete="off">
+              <div [style.color]="'red'" [hidden]="myFormGroupxx.get('phoneNum').valid || myFormGroupxx.get('phoneNum').untouched"> 
+                <div  [hidden]="!myFormGroupxx.hasError('required','phoneNum')">
+                    手机号是必填项
+                  </div>
+                  <div  [hidden]="!myFormGroupxx.hasError('minLength','phoneNum')">
+                    手机号最小长度11位
+                  </div>
+                  <div  [hidden]="!myFormGroupxx.hasError('maxLength','phoneNum')">
+                    手机号最大长度11位
+                  </div>
+                </div>
+            </div>
+            <div class="full-width">
+              <input type="email" placeholder="邮箱" formControlName="email" autocomplete="off">
+              <div [style.color]="'red'" [hidden]="myFormGroupxx.get('email').valid || myFormGroupxx.get('email').untouched">
+                <div  [hidden]="!myFormGroupxx.hasError('required','email')">
+                  邮箱是必填项
+                </div>
+                <div [hidden]="!myFormGroupxx.hasError('email','email')">
+                  不是合法的邮箱地址
+                </div>
+              </div>
+            </div>
+            <div class="full-width">
+              <input type="text" placeholder="请输入密码提示问题" formControlName="question" autocomplete="off">
+              <div [style.color]="'red'" [hidden]="myFormGroupxx.get('question').valid || myFormGroupxx.get('question').untouched">
+                <div  [hidden]="!myFormGroupxx.hasError('required','question')">
+                  密码提示问题是必填项
+                </div>
+              </div>
+            </div>
+            <div class="full-width">
+              <input type="text" placeholder="请输入密码提示问题答案" formControlName="answer" autocomplete="off">
+              <div [style.color]="'red'" [hidden]="myFormGroupxx.get('answer').valid || myFormGroupxx.get('answer').untouched">
+                <div  [hidden]="!myFormGroupxx.hasError('required','answer')">
+                  密码提示问题答案是必填项
+                </div>
+              </div>
+            </div>
+            <button mat-raised-button color="accent" type="submit"  [disabled]="!myFormGroupxx.valid">注册</button>
           </mat-card-content>
         </mat-card>
       </form>

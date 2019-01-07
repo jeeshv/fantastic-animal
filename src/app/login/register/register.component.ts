@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PortalService } from '../../services/portal.service';
-
+import { equalValidator, mobileValidator } from '../../validator/validators';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  minLength = 6;
   myFormGroupxx:FormGroup;
   items = [];
   private readonly avatarName = 'avatars';
@@ -18,20 +19,22 @@ export class RegisterComponent implements OnInit {
     private router: Router,) { }
 
   ngOnInit() {
-    const img = `${this.avatarName}:svg-${(Math.random() * 16).toFixed()}`;
-    const nums = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
-    this.items = nums.map(d=>`avatars:svg-${d}`);
     this.myFormGroupxx = this.fb.group({
-      username:[],
-      password:[],
-      pconfirm:[],
-      phoneNum:[],
-      email:[],
-      question:[],
-      answer:[],
-      avatar:[img]
+      username:['',Validators.compose([Validators.required,Validators.minLength(6)])],
+      passwordsGroup: this.fb.group({
+        password: ['',Validators.minLength(this.minLength)],
+        pconfirm: ['']
+      }, { validator: equalValidator }),
+      phoneNum:['',[Validators.required, Validators.minLength(11), Validators.maxLength(11),mobileValidator]],
+      email:['',Validators.compose([Validators.required,Validators.email])],
+      question:['',Validators.required],
+      answer:['',Validators.required],
     })
   }
+
+  reset() {
+    this.myFormGroupxx.reset();
+}
 
   onSubmit({ value, valid }, ev: Event){
     ev.preventDefault();//默认的行为

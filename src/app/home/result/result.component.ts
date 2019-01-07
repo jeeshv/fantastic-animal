@@ -16,6 +16,10 @@ export class ResultComponent implements OnInit {
       this.msg = "登录成功！";
     }else if("regist" === key){
       this.msg = "注册成功！";
+    }else if("updatePassword" === key){
+      this.msg = "密码修改成功！";
+    }else if("updateUserInfo" === key){
+      this.msg = "个人信息修改成功！";
     }
   }
 
